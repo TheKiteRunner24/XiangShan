@@ -342,7 +342,8 @@ case class XSCoreParameters
   usePTWRepeater: Boolean = false,
   softTLB: Boolean = false, // dpi-c l1tlb debug only
   softPTW: Boolean = false, // dpi-c l2tlb debug only
-  softPTWDelay: Int = 1
+  softPTWDelay: Int = 1,
+  hasMbist:Boolean = false
 ){
   def vlWidth = log2Up(VLEN) + 1
 
@@ -813,6 +814,7 @@ trait HasXSParameter {
   def numCSRPCntLsu      = 8
   def numCSRPCntHc       = 5
   def printEventCoding   = true
+  def hasMbist = coreParams.hasMbist
 
   // Parameters for Sdtrig extension
   protected def TriggerNum = 4
