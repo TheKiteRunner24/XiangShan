@@ -354,6 +354,14 @@ class XiangShan(object):
         ]
         misc_tests = map(lambda x: os.path.join(base_dir, x), workloads)
         return misc_tests
+    def __get_ci_rvvbench(self, name=None):
+        base_dir = "/nfs/home/share/ci-workloads"
+        workloads = [
+            "rvv_bench/chacha20.bin",
+            "rvv_bench/mandelbrot.bin"
+        ]
+        rvvbench = map(lambda x: os.path.join(base_dir, x), workloads)
+        return rvvbench
 
     def __get_ci_mc(self, name=None):
         base_dir = "/nfs/home/share/ci-workloads"
@@ -431,7 +439,8 @@ class XiangShan(object):
             "mc-tests": self.__get_ci_mc,
             "nodiff-tests": self.__get_ci_nodiff,
             "microbench": self.__am_apps_path,
-            "coremark": self.__am_apps_path
+            "coremark": self.__am_apps_path,
+            "rvv-bench": self.__get_ci_rvvbench
         }
         for target in all_tests.get(test, self.__get_ci_workloads)(test):
             print(target)
@@ -454,7 +463,8 @@ class XiangShan(object):
             "mc-tests": self.__get_ci_mc,
             "nodiff-tests": self.__get_ci_nodiff,
             "microbench": self.__am_apps_path,
-            "coremark": self.__am_apps_path
+            "coremark": self.__am_apps_path,
+            "rvv-bench": self.__get_ci_rvvbench
         }
         for target in all_tests.get(test, self.__get_ci_workloads)(test):
             print(target)
